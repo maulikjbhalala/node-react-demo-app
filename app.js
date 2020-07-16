@@ -56,4 +56,46 @@ app.use(function(err, req, res, next) {
 });
 
 
+
+let mongoose=require('mongoose');
+let dbImport=require('./config/db');
+let opts={
+    useNewUrlParser:true,
+    useCreateIndex:true,
+    useUnifiedTopology:true
+};
+
+mongoose.connect(dbImport.dbUrl,opts,async(err)=>
+{
+
+    if(err)
+    {
+        console.log('error in mongodb connection\t',err);
+    }
+    else 
+    {
+        console.log('=================================')
+        console.log(`mongodb url: ${dbImport.dbUrl}`);
+        console.log('=================================')
+    }
+
+});
+
+let port=5600;
+app.listen(port,async(err)=>
+{
+    if(!err)
+    {
+        console.log('=================================')
+        console.log(`Server is running on port ${port}`);
+        console.log('=================================')
+    }
+    else if(err)
+    {
+        console.error(err);
+    }
+
+});
+
+
 module.exports = app;
