@@ -13,7 +13,7 @@
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
     "jade": "~1.3.0",
-    "mongoose": "^5.9.24",
+    "mongoose": "^5.9.24"
   },
   "description": "node crud app demo with react",
   "main": "app.js",
