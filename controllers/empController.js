@@ -41,8 +41,8 @@ async function getAllEmployees(req,res){
 };
 
 async function removeEmployee(req,res){
-
-    await empModel.findOneAndDelete({},async(err,result)=>
+    let id=req.params.id;
+    await empModel.findOneAndDelete({_id:id},async(err,result)=>
     {
             if(err)
             {
@@ -57,15 +57,25 @@ async function removeEmployee(req,res){
                 return res.json({status:false,msg:'No Data',data:{},dataArray:[]});
             }
     });
-
-
 };
 
-async function updateEmployee(req,res){
 
+async function updateEmployee(req,res){
     let id=req.params.id;
-    await empModel.findOneAndUpdate(bodyData,async(err,result)=>
-    {
+    let bodyData=req.body;
+    let set={
+        $set:
+        {
+            empName:bodyData.empName,
+            empDesg:bodyData.empDesg,
+            empDept:bodyData.empDept,
+            empId:bodyData.empId,
+            empEmail:bodyData.empEmail
+        }
+    };
+
+    await empModel.findOneAndUpdate({_id:id},set,{new:true},async(err,result)=>
+    {   
             if(err)
             {
                 return res.json({status:false,msg:err.toString(),data:{},dataArray:[]});
@@ -79,7 +89,6 @@ async function updateEmployee(req,res){
                 return res.json({status:false,msg:'No Data',data:{},dataArray:[]});
             }
     });
-
 };
 
 module.exports={

@@ -12,10 +12,10 @@ router.post('/',empControll.addEmployee);
 router.get('/',empControll.getAllEmployees);
 
 //delete employee
-router.delete('/',empControll.removeEmployee);
+router.delete('/:id',empControll.removeEmployee);
 
 //update emlpoyee
-router.put('/',empControll.updateEmployee);
+router.put('/:id',empControll.updateEmployee);
 
 
 module.exports=router;
