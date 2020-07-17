@@ -91,11 +91,33 @@ async function updateEmployee(req,res){
     });
 };
 
+async function getEmployeeById(req,res)
+{
+    let id=req.params.id;
+    await empModel.findOne({_id:id},async(err,result)=>
+    {   
+            if(err)
+            {
+                return res.json({status:false,msg:err.toString(),data:{},dataArray:[]});
+            }
+            else if(result!==null)
+            {
+                return res.json({status:true,msg:'',data:result,dataArray:[]});
+            }
+            else
+            {
+                return res.json({status:false,msg:'No Data',data:{},dataArray:[]});
+            }
+    });
+   return res.json('okk')
+};
+
 module.exports={
     removeEmployee,
     addEmployee,
     updateEmployee,
-    getAllEmployees
+    getAllEmployees,
+    getEmployeeById
 };
 
 

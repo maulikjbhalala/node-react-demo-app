@@ -17,5 +17,6 @@ router.delete('/:id',empControll.removeEmployee);
 //update emlpoyee
 router.put('/:id',empControll.updateEmployee);
 
-
+//get employee by id
+router.get('/:id',empControll.getEmployeeById);
 module.exports=router;
