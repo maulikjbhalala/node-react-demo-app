@@ -4,6 +4,10 @@ let empModel=require('../models/employee');
 
 async function addEmployee(req,res){
     let bodyData=req.body;
+    if(bodyData.empId===null || bodyData.empId===undefined || bodyData.empId=='undefined')
+    {
+        bodyData.empId=Date.now();
+    }
     await empModel.create(bodyData,async(err,result)=>
     {
             if(err)
